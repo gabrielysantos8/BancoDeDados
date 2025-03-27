@@ -1,0 +1,72 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE curso (
+id_curso int PRIMARY KEY,
+nome varchar(100),
+cargaHoraria decimal(4,2),
+dataFim date,
+duracao varchar(20),
+dataInicio date,
+quant_vagas int,
+id_turma int,
+id_disciplina int
+)
+
+CREATE TABLE aluno (
+id_aluno int PRIMARY KEY,
+cpf varchar(20),
+rg varchar(20),
+desempenho varchar(1000),
+turma varchar(20),
+curso varchar(30),
+nome varchar(100),
+matricula varchar(100),
+dataNasc date,
+historico varchar(1000),
+email varchar(100),
+notas varchar(300)
+)
+
+CREATE TABLE professor (
+id_professor int PRIMARY KEY,
+email varchar(100),
+nome varchar(100),
+cpf varchar(20),
+rg varchar(20),
+dataNascimento date,
+especializao varchar(100),
+salario decimal(5,2),
+horarios varchar(100)
+)
+
+CREATE TABLE turma (
+quantAlunos int,
+alunos varchar(5000),
+nome varchar(100),
+anoescolar int,
+id_turma int PRIMARY KEY,
+quantVagas int,
+id_aluno int,
+FOREIGN KEY(id_aluno) REFERENCES aluno (id_aluno)
+)
+
+CREATE TABLE disciplina (
+id_disciplina int PRIMARY KEY,
+turmas varchar(100),
+cargaHoraria decimal(4,2),
+descricao varchar(500),
+nome varchar(50)
+)
+
+CREATE TABLE ministra (
+id_professor int,
+id_disciplina int,
+FOREIGN KEY(id_professor) REFERENCES professor (id_professor),
+FOREIGN KEY(id_disciplina) REFERENCES disciplina (id_disciplina)
+)
+
+ALTER TABLE curso ADD FOREIGN KEY(id_turma) REFERENCES turma (id_turma)
+ALTER TABLE curso ADD FOREIGN KEY(id_disciplina) REFERENCES disciplina (id_disciplina)
