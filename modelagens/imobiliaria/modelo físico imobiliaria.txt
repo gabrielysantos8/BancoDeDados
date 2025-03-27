@@ -1,0 +1,85 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE proprietario (
+cod_proprietario int PRIMARY KEY,
+quantImoveis int,
+nome varchar(100),
+rg varchar(20),
+email varchar(100),
+telefone varchar(20),
+cpf varchar(20),
+imoveisAlugados int,
+cod_corretor int
+)
+
+CREATE TABLE corretor (
+nome varchar(100),
+cpf varcha(r20),
+rg varchar(20),
+dataNasc date,
+telefone varchar(20),
+email varchar(100),
+tipoContrato varchar(100),
+especializacao varchar(100),
+cod_corretor int PRIMARY KEY,
+cod_endereco int
+)
+
+CREATE TABLE imovel (
+quantBanheiro int,
+quantAndares int,
+areaExterna varchar(20),
+quantQuartos int,
+preco varchar(100),
+cod_imovel int PRIMARY KEY,
+tipo varchar(30),
+quandoFoiContruido date,
+condicoes varchar(1000),
+quantComodos int,
+cod_proprietario int,
+cod_endereco int,
+FOREIGN KEY(cod_proprietario) REFERENCES proprietario (cod_proprietario)
+)
+
+CREATE TABLE inquilino (
+cpf varchar(20),
+dataVencimentoAluguel date,
+valorAluguel decimal(5,2),
+ondeTrabalha varchar(50),
+comprovanteRenda varchar(500),
+dataNasc date,
+email varchar(100),
+telefone varchar(20),
+estadoCivil varchar(100),
+cod_inquilino int PRIMARY KEY,
+nome varchar(100),
+rg varchar(20),
+cod_corretor int,
+FOREIGN KEY(cod_corretor) REFERENCES corretor (cod_corretor)
+)
+
+CREATE TABLE endereco (
+cep char(8),
+complemento varchar(100),
+numero varchar(20),
+rua varchar(100),
+uf char(2),
+cidade varcchar(30),
+bairro varchar(100),
+cod_endereco int PRIMARY KEY
+)
+
+CREATE TABLE aluga (
+cod_aluguel int PRIMARY KEY,
+cod_inquilino int,
+cod_imovel int,
+FOREIGN KEY(cod_inquilino) REFERENCES inquilino (cod_inquilino),
+FOREIGN KEY(cod_imovel) REFERENCES imovel (cod_imovel)
+)
+
+ALTER TABLE proprietario ADD FOREIGN KEY(cod_corretor) REFERENCES corretor (cod_corretor)
+ALTER TABLE corretor ADD FOREIGN KEY(cod_endereco) REFERENCES endereco (cod_endereco)
+ALTER TABLE imovel ADD FOREIGN KEY(cod_endereco) REFERENCES endereco (cod_endereco)
