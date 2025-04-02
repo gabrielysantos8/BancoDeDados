@@ -1,0 +1,83 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE autor (
+nome varchar(100),
+id_autor int PRIMARY KEY
+)
+
+CREATE TABLE livro (
+id_livro int PRIMARY KEY,
+sinopse text,
+dataPublicacao date,
+nome varchar(255),
+preco decimal(10,2),
+editora varchar(30),
+genero varchar(30),
+estoque int
+)
+
+CREATE TABLE item_venda (
+id_item int PRIMARY KEY,
+venda_id int,
+livro_id int,
+precoUnitario decimal(10,2),
+quantidade int,
+id_venda int
+)
+
+CREATE TABLE venda (
+cliente_id int,
+id_venda int PRIMARY KEY,
+valorTotal decimal(10,2),
+dataVenda datetime,
+formaPagamento varchar(30),
+id_cliente int
+)
+
+CREATE TABLE cliente (
+cpf varchar(20),
+nome varchar(100),
+dataNascimento date,
+ativo bit(1),
+id_cliente int PRIMARY KEY,
+id_endereco int
+)
+
+CREATE TABLE telefone (
+cliente_id int,
+numero varchar(15),
+id_telefone int PRIMARY KEY,
+id_cliente int,
+FOREIGN KEY(id_cliente) REFERENCES cliente (id_cliente)
+)
+
+CREATE TABLE endereco (
+id_endereco int PRIMARY KEY,
+cliente_id int,
+rua varchar(255),
+numero varchar(10),
+bairro varchar(100),
+cidade varchar(100),
+cep char(8)
+)
+
+CREATE TABLE escreveu (
+id_autor int,
+id_livro int,
+FOREIGN KEY(id_autor) REFERENCES autor (id_autor),
+FOREIGN KEY(id_livro) REFERENCES livro (id_livro)
+)
+
+CREATE TABLE possui (
+id_item int,
+id_livro int,
+FOREIGN KEY(id_item) REFERENCES item_venda (id_item),
+FOREIGN KEY(id_livro) REFERENCES livro (id_livro)
+)
+
+ALTER TABLE item_venda ADD FOREIGN KEY(id_venda) REFERENCES venda (id_venda)
+ALTER TABLE venda ADD FOREIGN KEY(id_cliente) REFERENCES cliente (id_cliente)
+ALTER TABLE cliente ADD FOREIGN KEY(id_endereco) REFERENCES endereco (id_endereco)
