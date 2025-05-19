@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/05/2025 às 14:10
+-- Tempo de geração: 19/05/2025 às 14:07
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -62,25 +62,27 @@ CREATE TABLE `produtos` (
   `preco` decimal(10,2) DEFAULT NULL,
   `quant` int(11) DEFAULT NULL,
   `marca` varchar(255) DEFAULT NULL,
-  `id_categoria` int(11) DEFAULT NULL
+  `id_categoria` int(11) DEFAULT NULL,
+  `unidade_medida` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id_produto`, `nome`, `preco`, `quant`, `marca`, `id_categoria`) VALUES
-(1, 'sabão em pó', 25.00, 4, 'omo', 1),
-(2, 'Detergente', 3.50, 15, 'Ypê', 1),
-(3, 'Mussarela', 25.49, 30, 'Presidente', 3),
-(4, 'Pesunto', 6.99, 50, 'Sadia', 4),
-(5, 'Mortadela', 5.49, 30, 'Perdigão', 5),
-(6, 'Leite', 4.29, 67, 'Italac', 6),
-(7, 'Iorgute natural', 2.99, 40, 'Danone', 7),
-(8, 'Milho', 3.29, 57, 'Quero', 7),
-(9, 'Sardinha em óleo', 5.99, 34, 'Coqueiro', 8),
-(10, 'Filé de Frango', 18.90, 89, 'Seara', 9),
-(11, 'Contra filé bovino', 34.99, 57, 'Friboi', 10);
+INSERT INTO `produtos` (`id_produto`, `nome`, `preco`, `quant`, `marca`, `id_categoria`, `unidade_medida`) VALUES
+(1, 'sabão em pó', 25.00, 4, 'omo', 1, 'un'),
+(2, 'Detergente', 3.50, 15, 'Ypê', 1, 'un'),
+(3, 'Mussarela', 25.49, 30, 'Presidente', 2, 'kg'),
+(4, 'Pesunto', 6.99, 50, 'Sadia', 2, 'kg'),
+(5, 'Mortadela', 5.49, 30, 'Perdigão', 2, 'kg'),
+(6, 'Leite', 4.29, 67, 'Italac', 6, 'un'),
+(7, 'Iorgute natural', 2.99, 40, 'Danone', 7, 'un'),
+(8, 'Milho', 3.29, 57, 'Quero', 7, 'un'),
+(9, 'Sardinha em óleo', 5.99, 34, 'Coqueiro', 8, 'un'),
+(10, 'Filé de Frango', 18.90, 89, 'Seara', 9, 'kg'),
+(11, 'Contra filé bovino', 34.99, 57, 'Friboi', 10, 'kg'),
+(12, 'Manga', 3.00, 56, 'Produto nacional', 6, 'un');
 
 --
 -- Índices para tabelas despejadas
@@ -113,7 +115,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restrições para tabelas despejadas
