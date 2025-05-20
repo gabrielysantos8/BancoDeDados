@@ -1,0 +1,146 @@
+MariaDB [etecmcm2]> select * from produtos;
++------------+--------------------------+-------+-------+------------------+--------------+----------------+
+| id_produto | nome                     | preco | quant | marca            | id_categoria | unidade_medida |
++------------+--------------------------+-------+-------+------------------+--------------+----------------+
+|          1 | sabão em pó              | 25.00 |     4 | omo              |            1 | un             |
+|          2 | Detergente               |  3.50 |    15 | Ypê              |            1 | un             |
+|          3 | Mussarela                | 25.49 |    30 | Presidente       |            2 | kg             |
+|          4 | Pesunto                  |  6.99 |    50 | Sadia            |            2 | kg             |
+|          5 | Mortadela                |  3.99 |    67 | Perdigão         |            2 | kg             |
+|          6 | Leite                    |  4.29 |    67 | Italac           |            3 | un             |
+|          7 | Iorgute natural          |  2.99 |    40 | Danone           |            3 | un             |
+|          8 | Milho                    |  3.29 |    57 | Quero            |            4 | un             |
+|          9 | Sardinha em óleo         |  5.99 |    34 | Coqueiro         |            4 | un             |
+|         10 | Filé de Frango           | 18.90 |    89 | Seara            |            5 | kg             |
+|         11 | Contra filé bovino       | 34.99 |    57 | Friboi           |            5 | kg             |
+|         12 | Manga                    |  3.00 |    56 | Produto nacional |            6 | un             |
+|         13 | Alface                   |  2.79 |    78 | Orgânicos do Sul |            6 | un             |
+|         14 | Shampoo                  | 20.79 |    70 | Elseve           |            7 | un             |
+|         15 | Desodorante              | 11.50 |    56 | Rexona           |            7 | un             |
+|         16 | Refrigerante             |  8.99 |    89 | Coca-cola        |            8 | un             |
+|         17 | Suco de laranja          |  6.49 |    80 | Del Valle        |            8 | un             |
+|         18 | Fone de Ouvido Bluetooth | 89.90 |    45 | Multilaser       |            9 | un             |
+|         19 | Carregador Turbo USB     | 59.00 |    56 | Samsung          |            9 | un             |
+|         20 | Lasanha Bolonhesa        | 14.00 |    90 | Sadia            |           10 | un             |
+|         21 | Pizza Calabresa          | 16.90 |    77 | Perdigão         |           10 | un             |
++------------+--------------------------+-------+-------+------------------+--------------+----------------+
+21 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos where marca = 'Sadia';
++------------+-------------------+-------+-------+-------+--------------+----------------+
+| id_produto | nome              | preco | quant | marca | id_categoria | unidade_medida |
++------------+-------------------+-------+-------+-------+--------------+----------------+
+|          4 | Pesunto           |  6.99 |    50 | Sadia |            2 | kg             |
+|         20 | Lasanha Bolonhesa | 14.00 |    90 | Sadia |           10 | un             |
++------------+-------------------+-------+-------+-------+--------------+----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos where preco < 25;
++------------+-------------------+-------+-------+------------------+--------------+----------------+
+| id_produto | nome              | preco | quant | marca            | id_categoria | unidade_medida |
++------------+-------------------+-------+-------+------------------+--------------+----------------+
+|          2 | Detergente        |  3.50 |    15 | Ypê              |            1 | un             |
+|          4 | Pesunto           |  6.99 |    50 | Sadia            |            2 | kg             |
+|          5 | Mortadela         |  3.99 |    67 | Perdigão         |            2 | kg             |
+|          6 | Leite             |  4.29 |    67 | Italac           |            3 | un             |
+|          7 | Iorgute natural   |  2.99 |    40 | Danone           |            3 | un             |
+|          8 | Milho             |  3.29 |    57 | Quero            |            4 | un             |
+|          9 | Sardinha em óleo  |  5.99 |    34 | Coqueiro         |            4 | un             |
+|         10 | Filé de Frango    | 18.90 |    89 | Seara            |            5 | kg             |
+|         12 | Manga             |  3.00 |    56 | Produto nacional |            6 | un             |
+|         13 | Alface            |  2.79 |    78 | Orgânicos do Sul |            6 | un             |
+|         14 | Shampoo           | 20.79 |    70 | Elseve           |            7 | un             |
+|         15 | Desodorante       | 11.50 |    56 | Rexona           |            7 | un             |
+|         16 | Refrigerante      |  8.99 |    89 | Coca-cola        |            8 | un             |
+|         17 | Suco de laranja   |  6.49 |    80 | Del Valle        |            8 | un             |
+|         20 | Lasanha Bolonhesa | 14.00 |    90 | Sadia            |           10 | un             |
+|         21 | Pizza Calabresa   | 16.90 |    77 | Perdigão         |           10 | un             |
++------------+-------------------+-------+-------+------------------+--------------+----------------+
+16 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos where quant > 50;
++------------+----------------------+-------+-------+------------------+--------------+----------------+
+| id_produto | nome                 | preco | quant | marca            | id_categoria | unidade_medida |
++------------+----------------------+-------+-------+------------------+--------------+----------------+
+|          5 | Mortadela            |  3.99 |    67 | Perdigão         |            2 | kg             |
+|          6 | Leite                |  4.29 |    67 | Italac           |            3 | un             |
+|          8 | Milho                |  3.29 |    57 | Quero            |            4 | un             |
+|         10 | Filé de Frango       | 18.90 |    89 | Seara            |            5 | kg             |
+|         11 | Contra filé bovino   | 34.99 |    57 | Friboi           |            5 | kg             |
+|         12 | Manga                |  3.00 |    56 | Produto nacional |            6 | un             |
+|         13 | Alface               |  2.79 |    78 | Orgânicos do Sul |            6 | un             |
+|         14 | Shampoo              | 20.79 |    70 | Elseve           |            7 | un             |
+|         15 | Desodorante          | 11.50 |    56 | Rexona           |            7 | un             |
+|         16 | Refrigerante         |  8.99 |    89 | Coca-cola        |            8 | un             |
+|         17 | Suco de laranja      |  6.49 |    80 | Del Valle        |            8 | un             |
+|         19 | Carregador Turbo USB | 59.00 |    56 | Samsung          |            9 | un             |
+|         20 | Lasanha Bolonhesa    | 14.00 |    90 | Sadia            |           10 | un             |
+|         21 | Pizza Calabresa      | 16.90 |    77 | Perdigão         |           10 | un             |
++------------+----------------------+-------+-------+------------------+--------------+----------------+
+14 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select nome, preco from produtos order by preco asc limit 10;
++------------------+-------+
+| nome             | preco |
++------------------+-------+
+| Alface           |  2.79 |
+| Iorgute natural  |  2.99 |
+| Manga            |  3.00 |
+| Milho            |  3.29 |
+| Detergente       |  3.50 |
+| Mortadela        |  3.99 |
+| Leite            |  4.29 |
+| Sardinha em óleo |  5.99 |
+| Suco de laranja  |  6.49 |
+| Pesunto          |  6.99 |
++------------------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select nome, preco from produtos order by preco desc limit 10;
++--------------------------+-------+
+| nome                     | preco |
++--------------------------+-------+
+| Fone de Ouvido Bluetooth | 89.90 |
+| Carregador Turbo USB     | 59.00 |
+| Contra filé bovino       | 34.99 |
+| Mussarela                | 25.49 |
+| sabão em pó              | 25.00 |
+| Shampoo                  | 20.79 |
+| Filé de Frango           | 18.90 |
+| Pizza Calabresa          | 16.90 |
+| Lasanha Bolonhesa        | 14.00 |
+| Desodorante              | 11.50 |
++--------------------------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select count(*) as total_produtos from produtos;
++----------------+
+| total_produtos |
++----------------+
+|             21 |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select avg(preco) as preco_medio from produtos;
++-------------+
+| preco_medio |
++-------------+
+|   17.560952 |
++-------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select nome, quant from produtos order by quant desc limit 1;
++-------------------+-------+
+| nome              | quant |
++-------------------+-------+
+| Lasanha Bolonhesa |    90 |
++-------------------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select nome, quant from produtos order by quant asc limit 1;
++-------------+-------+
+| nome        | quant |
++-------------+-------+
+| sabão em pó |     4 |
++-------------+-------+
+1 row in set (0.000 sec)
