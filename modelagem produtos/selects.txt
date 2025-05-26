@@ -144,3 +144,90 @@ MariaDB [etecmcm2]> select nome, quant from produtos order by quant asc limit 1;
 | sabão em pó |     4 |
 +-------------+-------+
 1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> select p.nome, c.nome_cat from produtos p join categorias c on p.id_categoria = c.id_categoria;
++--------------------------+-------------+
+| nome                     | nome_cat    |
++--------------------------+-------------+
+| sabão em pó              | Limpeza     |
+| Detergente               | Limpeza     |
+| Mussarela                | Frios       |
+| Pesunto                  | Frios       |
+| Mortadela                | Frios       |
+| Leite                    | Laticínios  |
+| Iorgute natural          | Laticínios  |
+| Milho                    | Enlatados   |
+| Sardinha em óleo         | Enlatados   |
+| Filé de Frango           | Carnes      |
+| Contra filé bovino       | Carnes      |
+| Manga                    | Hortfrut    |
+| Alface                   | Hortfrut    |
+| Shampoo                  | Perfumaria  |
+| Desodorante              | Perfumaria  |
+| Refrigerante             | Bebidas     |
+| Suco de laranja          | Bebidas     |
+| Fone de Ouvido Bluetooth | Eletrônicos |
+| Carregador Turbo USB     | Eletrônicos |
+| Lasanha Bolonhesa        | Congelados  |
+| Pizza Calabresa          | Congelados  |
++--------------------------+-------------+
+21 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select p.nome, p.marca, p.preco from produtos p join categorias c on p.id_categoria = c.id_categoria WHERE c.nome_cat = 'Carnes';
++--------------------+--------+-------+
+| nome               | marca  | preco |
++--------------------+--------+-------+
+| Filé de Frango     | Seara  | 18.90 |
+| Contra filé bovino | Friboi | 34.99 |
++--------------------+--------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT * FROM produtos
+    -> where preco between 10 and 20;
++------------+-------------------+-------+-------+----------+--------------+----------------+
+| id_produto | nome              | preco | quant | marca    | id_categoria | unidade_medida |
++------------+-------------------+-------+-------+----------+--------------+----------------+
+|         10 | Filé de Frango    | 18.90 |    89 | Seara    |            5 | kg             |
+|         15 | Desodorante       | 11.50 |    56 | Rexona   |            7 | un             |
+|         20 | Lasanha Bolonhesa | 14.00 |    90 | Sadia    |           10 | un             |
+|         21 | Pizza Calabresa   | 16.90 |    77 | Perdigão |           10 | un             |
++------------+-------------------+-------+-------+----------+--------------+----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select * from produtos
+    -> where nome like 'S%';
++------------+------------------+-------+-------+-----------+--------------+----------------+
+| id_produto | nome             | preco | quant | marca     | id_categoria | unidade_medida |
++------------+------------------+-------+-------+-----------+--------------+----------------+
+|          1 | sabão em pó      | 25.00 |     4 | omo       |            1 | un             |
+|          9 | Sardinha em óleo |  5.99 |    34 | Coqueiro  |            4 | un             |
+|         14 | Shampoo          | 20.79 |    70 | Elseve    |            7 | un             |
+|         17 | Suco de laranja  |  6.49 |    80 | Del Valle |            8 | un             |
++------------+------------------+-------+-------+-----------+--------------+----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> select distinct marca from produtos;
++------------------+
+| marca            |
++------------------+
+| omo              |
+| Ypê              |
+| Presidente       |
+| Sadia            |
+| Perdigão         |
+| Italac           |
+| Danone           |
+| Quero            |
+| Coqueiro         |
+| Seara            |
+| Friboi           |
+| Produto nacional |
+| Orgânicos do Sul |
+| Elseve           |
+| Rexona           |
+| Coca-cola        |
+| Del Valle        |
+| Multilaser       |
+| Samsung          |
++------------------+
+19 rows in set (0.000 sec)
