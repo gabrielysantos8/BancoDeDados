@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/08/2025 às 14:10
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 05/08/2025 às 21:27
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,7 +57,9 @@ CREATE TABLE `atendimento_servico` (
 
 CREATE TABLE `carro` (
   `codcarro` int(11) NOT NULL,
-  `ano` int(11) DEFAULT NULL
+  `ano` int(11) DEFAULT NULL,
+  `codmodelo` int(11) DEFAULT NULL,
+  `codcliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -148,7 +150,9 @@ ALTER TABLE `atendimento_servico`
 -- Índices de tabela `carro`
 --
 ALTER TABLE `carro`
-  ADD PRIMARY KEY (`codcarro`);
+  ADD PRIMARY KEY (`codcarro`),
+  ADD KEY `codmodelo` (`codmodelo`),
+  ADD KEY `codcliente` (`codcliente`);
 
 --
 -- Índices de tabela `cliente`
@@ -244,6 +248,13 @@ ALTER TABLE `atendimento`
 ALTER TABLE `atendimento_servico`
   ADD CONSTRAINT `atendimento_servico_ibfk_1` FOREIGN KEY (`codos`) REFERENCES `atendimento` (`codos`),
   ADD CONSTRAINT `atendimento_servico_ibfk_2` FOREIGN KEY (`codservico`) REFERENCES `servico` (`codservico`);
+
+--
+-- Restrições para tabelas `carro`
+--
+ALTER TABLE `carro`
+  ADD CONSTRAINT `carro_ibfk_1` FOREIGN KEY (`codmodelo`) REFERENCES `modelo` (`codmodelo`),
+  ADD CONSTRAINT `carro_ibfk_2` FOREIGN KEY (`codcliente`) REFERENCES `cliente` (`codcliente`);
 
 --
 -- Restrições para tabelas `cliente`
