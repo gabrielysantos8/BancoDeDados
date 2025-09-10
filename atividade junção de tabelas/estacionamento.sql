@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/09/2025 às 14:04
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 10/09/2025 às 19:24
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,7 +71,6 @@ INSERT INTO `cliente` (`cpf`, `dnasc`, `nome`) VALUES
 ('10101010101', '1997-02-25', 'Paula Mendes'),
 ('11111111111', '1990-05-12', 'João Silva'),
 ('22222222222', '1985-08-23', 'Maria Oliveira'),
-('33333333333', '2000-11-05', 'Pedro Souza'),
 ('44444444444', '1992-03-14', 'Ana Costa'),
 ('55555555555', '1978-07-21', 'Carlos Lima'),
 ('66666666666', '1999-01-09', 'Fernanda Alves'),
@@ -87,9 +86,9 @@ INSERT INTO `cliente` (`cpf`, `dnasc`, `nome`) VALUES
 
 CREATE TABLE `estaciona` (
   `cod` int(11) NOT NULL,
-  `horasaida` datetime DEFAULT NULL,
+  `horasaida` time DEFAULT NULL,
   `datasaida` date DEFAULT NULL,
-  `horaentrada` datetime DEFAULT NULL,
+  `horaentrada` time DEFAULT NULL,
   `dataentrada` date DEFAULT NULL,
   `placa` varchar(10) DEFAULT NULL,
   `codandar` int(11) DEFAULT NULL
@@ -100,16 +99,20 @@ CREATE TABLE `estaciona` (
 --
 
 INSERT INTO `estaciona` (`cod`, `horasaida`, `datasaida`, `horaentrada`, `dataentrada`, `placa`, `codandar`) VALUES
-(1, '2025-09-01 10:30:00', '2025-09-01', '2025-09-01 08:00:00', '2025-09-01', 'ABC1234', 1),
-(2, '2025-09-01 14:00:00', '2025-09-01', '2025-09-01 09:15:00', '2025-09-01', 'XYZ5678', 2),
-(3, NULL, NULL, '2025-09-01 11:00:00', '2025-09-01', 'JKL4321', 3),
-(4, '2025-09-01 17:45:00', '2025-09-01', '2025-09-01 12:30:00', '2025-09-01', 'MNO8765', 4),
-(5, '2025-09-02 08:00:00', '2025-09-02', '2025-09-01 19:00:00', '2025-09-01', 'PQR2468', 5),
-(6, '2025-09-02 09:15:00', '2025-09-02', '2025-09-02 07:45:00', '2025-09-02', 'STU1357', 6),
-(7, '2025-09-02 13:30:00', '2025-09-02', '2025-09-02 09:50:00', '2025-09-02', 'VWX9753', 7),
-(8, '2025-09-02 16:10:00', '2025-09-02', '2025-09-02 11:20:00', '2025-09-02', 'YZA6420', 8),
-(9, '2025-09-03 12:00:00', '2025-09-03', '2025-09-03 08:30:00', '2025-09-03', 'BCD1597', 9),
-(10, '2025-09-03 18:20:00', '2025-09-03', '2025-09-03 14:10:00', '2025-09-03', 'EFG7531', 10);
+(1, '10:30:00', '2025-09-01', '08:00:00', '2025-09-01', 'ABC1234', 1),
+(2, '14:00:00', '2025-09-01', '09:15:00', '2025-09-01', 'XYZ5678', 2),
+(4, '17:45:00', '2025-09-01', '12:30:00', '2025-09-01', 'MNO8765', 4),
+(5, '08:00:00', '2025-09-02', '19:00:00', '2025-09-01', 'PQR2468', 5),
+(6, '09:15:00', '2025-09-02', '07:45:00', '2025-09-02', 'STU1357', 6),
+(7, '13:30:00', '2025-09-02', '09:50:00', '2025-09-02', 'VWX9753', 7),
+(8, '16:10:00', '2025-09-02', '11:20:00', '2025-09-02', 'YZA6420', 8),
+(9, '12:00:00', '2025-09-03', '08:30:00', '2025-09-03', 'BCD1597', 9),
+(10, '18:20:00', '2025-09-03', '14:10:00', '2025-09-03', 'EFG7531', 10),
+(11, '18:00:00', '2025-09-04', '14:00:00', '2025-09-04', 'MNO8765', 3),
+(12, '19:15:00', '2025-09-05', '15:30:00', '2025-09-05', 'YZA6420', 7),
+(13, '13:25:00', '2025-09-06', '10:30:00', '2025-09-06', 'EFG7531', 9),
+(14, '17:35:00', '2025-09-06', '14:50:00', '2025-09-06', 'ABC1234', 10),
+(15, '18:30:00', '2025-09-09', '17:00:00', '2025-09-09', 'MNO8765', 9);
 
 -- --------------------------------------------------------
 
@@ -148,24 +151,24 @@ CREATE TABLE `veiculo` (
   `placa` varchar(20) NOT NULL,
   `cor` varchar(20) DEFAULT NULL,
   `cpf` varchar(20) DEFAULT NULL,
-  `codmodelo` int(11) DEFAULT NULL
+  `codmodelo` int(11) DEFAULT NULL,
+  `ano` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `veiculo`
 --
 
-INSERT INTO `veiculo` (`placa`, `cor`, `cpf`, `codmodelo`) VALUES
-('ABC1234', 'Preto', '11111111111', 1),
-('BCD1597', 'Branco', '99999999999', 9),
-('EFG7531', 'Prata', '10101010101', 10),
-('JKL4321', 'Prata', '33333333333', 3),
-('MNO8765', 'Vermelho', '44444444444', 4),
-('PQR2468', 'Azul', '55555555555', 5),
-('STU1357', 'Preto', '66666666666', 6),
-('VWX9753', 'Cinza', '77777777777', 7),
-('XYZ5678', 'Branco', '22222222222', 2),
-('YZA6420', 'Preto', '88888888888', 8);
+INSERT INTO `veiculo` (`placa`, `cor`, `cpf`, `codmodelo`, `ano`) VALUES
+('ABC1234', 'Preto', '11111111111', 1, 2018),
+('BCD1597', 'Branco', '99999999999', 9, 2020),
+('EFG7531', 'Prata', '10101010101', 10, 2019),
+('MNO8765', 'Vermelho', '44444444444', 4, 2021),
+('PQR2468', 'Azul', '55555555555', 5, 2017),
+('STU1357', 'Preto', '66666666666', 6, 2022),
+('VWX9753', 'Cinza', '77777777777', 7, 2020),
+('XYZ5678', 'Branco', '22222222222', 2, 2016),
+('YZA6420', 'Preto', '88888888888', 8, 2018);
 
 --
 -- Índices para tabelas despejadas
@@ -213,7 +216,7 @@ ALTER TABLE `veiculo`
 -- AUTO_INCREMENT de tabela `estaciona`
 --
 ALTER TABLE `estaciona`
-  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `modelo`
